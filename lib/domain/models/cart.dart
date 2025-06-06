@@ -14,6 +14,11 @@ class Cart extends HiveObject {
   Cart({required this.id, required this.products});
 
   factory Cart.fromJson(Map<String, dynamic> json) {
-    return Cart(id: json['id'], products: json['products']);
+    return Cart(
+      id: json['id'],
+      products: (json['products'] as List)
+          .map((productJson) => Product.fromJson(productJson))
+          .toList(),
+    );
   }
 }

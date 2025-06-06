@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:gebeya/domain/models/product.dart';
 
-class ProductServiceRemote {
-  const ProductServiceRemote({required this.dio});
+class ProductService {
+  const ProductService({required this.dio});
   final String _productEndpoint = 'products';
   final Dio dio;
 

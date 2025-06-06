@@ -1,4 +1,4 @@
-import 'package:gebeya/data/services/remote/product_service_remote.dart';
+import 'package:gebeya/data/services/product_service.dart';
 import 'package:gebeya/domain/models/product.dart';
 
 abstract class ProductRepository {
@@ -6,8 +6,9 @@ abstract class ProductRepository {
 }
 
 class ProductRepositoryImpl implements ProductRepository {
-  final ProductServiceRemote service;
+  final ProductService service;
   ProductRepositoryImpl({required this.service});
+
   @override
   Future<List<Product>> getAllProducts() async {
     try {
