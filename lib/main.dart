@@ -9,6 +9,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(ProductAdapter());
   Hive.registerAdapter(CartAdapter());
+  await Hive.openBox('inventory');
   runApp(const MainApp());
 }
 
