@@ -18,6 +18,14 @@ class CartFetchingService {
       } else {
         throw Exception("Unexpected response format");
       }
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.connectionTimeout) {
+        throw Exception("Connection Timeout");
+      } else if (e.type == DioExceptionType.receiveTimeout) {
+        throw Exception("Server not responding");
+      } else {
+        throw Exception("Unknown Error");
+      }
     } catch (e) {
       throw Exception("Failed to fetch carts: $e");
     }
@@ -31,6 +39,14 @@ class CartFetchingService {
         return Cart.fromJson(response.data);
       } else {
         throw Exception("Cart not found");
+      }
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.connectionTimeout) {
+        throw Exception("Connection Timeout");
+      } else if (e.type == DioExceptionType.receiveTimeout) {
+        throw Exception("Server not responding");
+      } else {
+        throw Exception("Unknown Error");
       }
     } catch (e) {
       throw Exception("Failed to fetch cart by ID: $e");
