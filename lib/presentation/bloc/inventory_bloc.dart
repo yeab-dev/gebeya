@@ -13,9 +13,7 @@ class InventoryBloc extends Bloc<InventoryLoadEvent, InventoryState> {
   CartRepository cartRepository;
   InventoryBloc({required this.cartRepository, required this.productRepository})
     : super((InventoryLoadInitial())) {
-    on<InventoryLoadStarted>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<InventoryLoadStarted>(_onLoadStarted);
   }
   Future<void> _onLoadStarted(
     InventoryLoadStarted event,

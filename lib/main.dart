@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gebeya/domain/models/cart.dart';
 import 'package:gebeya/domain/models/product.dart';
+import 'package:gebeya/presentation/pages/home.dart';
 import 'package:hive_flutter/adapters.dart';
 
 void main() async {
@@ -10,16 +11,21 @@ void main() async {
   Hive.registerAdapter(ProductAdapter());
   Hive.registerAdapter(CartAdapter());
   await Hive.openBox('inventory');
-  runApp(const MainApp());
+  runApp(const App());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: Center(child: Text('Hello World!'))),
+    return MaterialApp(
+      home: Home(),
+      theme: ThemeData(
+        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
+        primaryColor: Colors.orange,
+        // useMaterial3: true,
+      ),
     );
   }
 }
