@@ -16,6 +16,14 @@ class ProductFetchingService {
       } else {
         throw Exception("Unexpected Response Format");
       }
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.connectionTimeout) {
+        throw Exception("Connection Timeout");
+      } else if (e.type == DioExceptionType.receiveTimeout) {
+        throw Exception("Server not responding");
+      } else {
+        throw Exception("Unknown Error");
+      }
     } catch (e) {
       throw Exception("Failed to fetch products: $e");
     }
@@ -28,6 +36,14 @@ class ProductFetchingService {
         return Product.fromJson(response.data);
       } else {
         throw Exception("Unexpected Response Format");
+      }
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.connectionTimeout) {
+        throw Exception("Connection Timeout");
+      } else if (e.type == DioExceptionType.receiveTimeout) {
+        throw Exception("Server not responding");
+      } else {
+        throw Exception("Unknown Error");
       }
     } catch (e) {
       throw Exception("Failed to fetch product by ID: $e");
