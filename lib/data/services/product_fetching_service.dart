@@ -17,7 +17,7 @@ class ProductFetchingService {
         throw Exception("Unexpected Response Format");
       }
     } catch (e) {
-      throw Exception("Failed to fetch carts: $e");
+      throw Exception("Failed to fetch products: $e");
     }
   }
 
@@ -30,7 +30,7 @@ class ProductFetchingService {
         throw Exception("Unexpected Response Format");
       }
     } catch (e) {
-      throw Exception("Failed to fetch product: $e");
+      throw Exception("Failed to fetch product by ID: $e");
     }
   }
 }
