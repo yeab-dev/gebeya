@@ -4,7 +4,7 @@ import 'package:gebeya/domain/models/cart.dart';
 abstract class CartRepository {
   const CartRepository();
   Future<void> saveCart(Cart cart);
-  Future<void> getCart();
+  Future<Cart?> getCart();
 }
 
 class CartRepositoryImpl extends CartRepository {
