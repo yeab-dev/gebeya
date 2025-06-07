@@ -30,7 +30,7 @@ class InventoryBloc extends Bloc<InventoryEvent, InventoryState> {
     try {
       final cart = await cartRepository.getCart();
       final products = await productRepository.getAllProducts();
-      _allProducts = products; // Cache products
+      _allProducts = products;
       emit(
         InventoryLoadSuccess(
           cart: cart ?? Cart(id: "cart", products: []),

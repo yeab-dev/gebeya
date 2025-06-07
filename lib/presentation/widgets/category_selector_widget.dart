@@ -12,7 +12,6 @@ class CategorySelectorWidget extends StatefulWidget {
 }
 
 class _CategorySelectorWidgetState extends State<CategorySelectorWidget> {
-  bool selected = false;
   @override
   Widget build(BuildContext context) {
     final category = widget.category;
@@ -20,14 +19,23 @@ class _CategorySelectorWidgetState extends State<CategorySelectorWidget> {
     final width = MediaQuery.sizeOf(context).width;
     return BlocBuilder<InventoryBloc, InventoryState>(
       builder: (context, state) {
+        ProductCategory? selectedCategory;
+        if (state is InventoryLoadSuccess) {
+          selectedCategory = state.category;
+        }
         return GestureDetector(
           onTap: () {
-            setState(() {
-              selected = !selected;
+            if (selectedCategory != category) {
               context.read<InventoryBloc>().add(
                 InventoryFilterByCategoryStarted(productCategory: category),
               );
-            });
+            } else {
+              context.read<InventoryBloc>().add(
+                InventoryFilterByCategoryStarted(
+                  productCategory: ProductCategory.all,
+                ),
+              );
+            }
           },
           child: Row(
             children: [
@@ -37,7 +45,7 @@ class _CategorySelectorWidgetState extends State<CategorySelectorWidget> {
                 height: height / 25,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: (state as InventoryLoadSuccess).category == category
+                  color: selectedCategory == category
                       ? Colors.orange
                       : Colors.grey.shade100,
                 ),
