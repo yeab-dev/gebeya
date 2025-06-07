@@ -5,6 +5,7 @@ import 'package:gebeya/data/repositories/cart_repository.dart';
 import 'package:gebeya/data/repositories/product_repository.dart';
 import 'package:gebeya/data/services/cart_service.dart';
 import 'package:gebeya/data/services/product_service.dart';
+import 'package:gebeya/domain/models/product_category.dart';
 import 'package:gebeya/presentation/bloc/inventory_bloc.dart';
 import 'package:gebeya/presentation/widgets/category_selector_widget.dart';
 import 'package:gebeya/presentation/widgets/product_card.dart';
@@ -49,10 +50,18 @@ class Home extends StatelessWidget {
                           child: ListView(
                             scrollDirection: Axis.horizontal,
                             children: [
-                              CategorySelectorWidget(category: "men"),
-                              CategorySelectorWidget(category: "women"),
-                              CategorySelectorWidget(category: "jewelery"),
-                              CategorySelectorWidget(category: "electtornics"),
+                              CategorySelectorWidget(
+                                category: ProductCategory.men,
+                              ),
+                              CategorySelectorWidget(
+                                category: ProductCategory.women,
+                              ),
+                              CategorySelectorWidget(
+                                category: ProductCategory.jewelery,
+                              ),
+                              CategorySelectorWidget(
+                                category: ProductCategory.electronics,
+                              ),
                             ],
                           ),
                         ),

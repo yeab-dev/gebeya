@@ -17,7 +17,12 @@ final class InventoryLoadInProgress extends InventoryState {
 final class InventoryLoadSuccess extends InventoryState {
   final Cart cart;
   final List<Product> products;
-  const InventoryLoadSuccess({required this.cart, required this.products});
+  final ProductCategory category;
+  const InventoryLoadSuccess({
+    required this.cart,
+    required this.products,
+    required this.category,
+  });
 
   @override
   List<Object?> get props => [cart, products];

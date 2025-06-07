@@ -1,3 +1,4 @@
+import 'package:gebeya/domain/models/product_category.dart';
 import 'package:hive/hive.dart';
 
 part 'product.g.dart';
@@ -17,10 +18,25 @@ class Product extends HiveObject {
   final String description;
 
   @HiveField(4)
-  final String category;
+  final ProductCategory category;
 
   @HiveField(5)
   final String image;
+
+  static ProductCategory fromString(String value) {
+    switch (value) {
+      case "men's clothing":
+        return ProductCategory.men;
+      case "women's clothing":
+        return ProductCategory.women;
+      case "jewelery":
+        return ProductCategory.jewelery;
+      case "electronics":
+        return ProductCategory.electronics;
+      default:
+        return ProductCategory.men;
+    }
+  }
 
   Product({
     required this.id,
@@ -37,7 +53,7 @@ class Product extends HiveObject {
       title: json['title'],
       price: json['price'],
       description: json['description'],
-      category: json['category'],
+      category: fromString(json['category']),
       image: json['image'],
     );
   }

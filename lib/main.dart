@@ -10,6 +10,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(ProductAdapter());
   Hive.registerAdapter(CartAdapter());
+  // Hive.registerAdapter(ProductCategoryAdapter());
   await Hive.openBox('inventory');
   runApp(const App());
 }

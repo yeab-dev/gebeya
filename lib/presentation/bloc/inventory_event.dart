@@ -1,12 +1,19 @@
 part of 'inventory_bloc.dart';
 
-sealed class InventoryLoadEvent extends Equatable {
-  const InventoryLoadEvent();
+sealed class InventoryEvent extends Equatable {
+  const InventoryEvent();
 }
 
-final class InventoryLoadStarted extends InventoryLoadEvent {
+final class InventoryLoadStarted extends InventoryEvent {
   const InventoryLoadStarted();
 
   @override
   List<Object?> get props => [];
+}
+
+final class InventoryFilterByCategoryStarted extends InventoryEvent {
+  final ProductCategory productCategory;
+  const InventoryFilterByCategoryStarted({required this.productCategory});
+  @override
+  List<Object?> get props => [productCategory];
 }
