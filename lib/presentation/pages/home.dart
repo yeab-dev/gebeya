@@ -7,6 +7,7 @@ import 'package:gebeya/data/services/cart_service.dart';
 import 'package:gebeya/data/services/product_service.dart';
 import 'package:gebeya/domain/models/product_category.dart';
 import 'package:gebeya/presentation/bloc/inventory_bloc.dart';
+import 'package:gebeya/presentation/pages/product_detail_page.dart';
 import 'package:gebeya/presentation/widgets/category_selector_widget.dart';
 import 'package:gebeya/presentation/widgets/product_card.dart';
 import 'package:gebeya/presentation/widgets/search_text_field.dart';
@@ -72,7 +73,18 @@ class Home extends StatelessWidget {
                             crossAxisSpacing: width / 15,
                             crossAxisCount: 2,
                             children: state.products.map((product) {
-                              return ProductCard(product: product);
+                              return GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          ProductDetailPage(product: product),
+                                    ),
+                                  );
+                                },
+                                child: ProductCard(product: product),
+                              );
                             }).toList(),
                           ),
                         ),
