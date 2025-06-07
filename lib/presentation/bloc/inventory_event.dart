@@ -17,3 +17,11 @@ final class InventoryFilterByCategoryStarted extends InventoryEvent {
   @override
   List<Object?> get props => [productCategory];
 }
+
+final class InventoryFilterBySearchStarted extends InventoryEvent {
+  final String searchQuery;
+  const InventoryFilterBySearchStarted({required this.searchQuery});
+
+  @override
+  List<Object?> get props => [searchQuery];
+}

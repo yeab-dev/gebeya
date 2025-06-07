@@ -37,58 +37,60 @@ class Home extends StatelessWidget {
                 case InventoryLoadInProgress():
                   return Center(child: CircularProgressIndicator());
                 case InventoryLoadSuccess():
-                  return SizedBox(
-                    width: width,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SearchTextField(),
-                        SizedBox(height: 10),
-                        SizedBox(
-                          width: width,
-                          height: height / 15,
+                  return SingleChildScrollView(
+                    child: SizedBox(
+                      width: width,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SearchTextField(),
+                          SizedBox(height: 10),
+                          SizedBox(
+                            width: width,
+                            height: height / 15,
 
-                          child: ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: [
-                              CategorySelectorWidget(
-                                category: ProductCategory.men,
-                              ),
-                              CategorySelectorWidget(
-                                category: ProductCategory.women,
-                              ),
-                              CategorySelectorWidget(
-                                category: ProductCategory.jewelery,
-                              ),
-                              CategorySelectorWidget(
-                                category: ProductCategory.electronics,
-                              ),
-                            ],
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: [
+                                CategorySelectorWidget(
+                                  category: ProductCategory.men,
+                                ),
+                                CategorySelectorWidget(
+                                  category: ProductCategory.women,
+                                ),
+                                CategorySelectorWidget(
+                                  category: ProductCategory.jewelery,
+                                ),
+                                CategorySelectorWidget(
+                                  category: ProductCategory.electronics,
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: height * 0.74,
-                          child: GridView.count(
-                            mainAxisSpacing: height / 20,
-                            crossAxisSpacing: width / 15,
-                            crossAxisCount: 2,
-                            children: state.products.map((product) {
-                              return GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          ProductDetailPage(product: product),
-                                    ),
-                                  );
-                                },
-                                child: ProductCard(product: product),
-                              );
-                            }).toList(),
+                          SizedBox(
+                            height: height * 0.74,
+                            child: GridView.count(
+                              mainAxisSpacing: height / 20,
+                              crossAxisSpacing: width / 15,
+                              crossAxisCount: 2,
+                              children: state.products.map((product) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            ProductDetailPage(product: product),
+                                      ),
+                                    );
+                                  },
+                                  child: ProductCard(product: product),
+                                );
+                              }).toList(),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   );
                 case InventoryLoadFailure():
